@@ -26,6 +26,22 @@
 
 - Hindu astrology + Skyview
 
+- Custom youtube recommender platform, similar to
+  - https://www.youtube.com/watch?v=r5Y1I1Zol2k
+  - https://github.com/rosadiaznewyork/video-finder-algorithm
+
+---
+
+## Solve interesting problems
+
+https://sites.google.com/site/prologsite/prolog-problems
+
+http://aperiodic.net/phil/scala/s-99/
+
+http://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html
+
+- Walk through multiple different approaches to exercism exercises... To figure out most idomatic approach in a particular programming language
+
 ---
 
 Based on current trends and your technical focus, here are session ideas organized by category:
