@@ -1,0 +1,8 @@
+- NextJS
+- React
+- TypeScript
+- Giscus (Using repo: https://github.com/codermana/the-hour-discussions) for discussions
+- Listmonk with Zohomail
+  - Setup instructions for listmonk with postgres on Synology NAS
+- CloudFlare DDNS on raspberrypi zero w
+- Nginx for Reverse proxy on raspberrypi zero w

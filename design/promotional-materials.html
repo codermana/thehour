@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CoderMana Hour - Promotional Materials</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #FF8C42;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #FF8C42;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B1A 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>') repeat;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .hero-details {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-topics {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .topic-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #FF6B1A;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Social Media Templates */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .social-preview {
+            aspect-ratio: 1200/630;
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B1A 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .social-preview.square {
+            aspect-ratio: 1/1;
+        }
+
+        .social-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .social-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .social-title {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .social-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .social-details {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .social-info {
+            padding: 20px;
+        }
+
+        .social-info h3 {
+            color: #FF8C42;
+            margin-bottom: 10px;
+        }
+
+        .social-info p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Email Template */
+        .email-template {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid #333;
+            max-width: 600px;
+        }
+
+        .email-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .email-logo {
+            font-size: 2em;
+            font-weight: 900;
+            color: #FF8C42;
+            margin-bottom: 10px;
+        }
+
+        .email-body {
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .email-body h2 {
+            color: #FF8C42;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .session-details {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #FF8C42;
+        }
+
+        .session-details strong {
+            color: #FF8C42;
+        }
+
+        /* Schedule Template */
+        .schedule {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #333;
+        }
+
+        .schedule-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .schedule-item {
+            background: #2d2d2d;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #FF8C42;
+            transition: transform 0.2s;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(5px);
+        }
+
+        .schedule-date {
+            color: #FF8C42;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .schedule-topic {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .schedule-description {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-logo {
+                font-size: 2em;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The CoderMana Hour - Promotional Materials</h1>
+
+        <!-- Hero Section for Website -->
+        <div class="section">
+            <h2 class="section-title">1. Website Hero Section</h2>
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-logo">THE CODERMANA HOUR</div>
+                    <div class="hero-tagline">Live Tech Sessions Every Other Thursday</div>
+                    <div class="hero-details">
+                        🗓️ Fortnightly • ⏰ 7-8 PM IST • 🌍 Free & Open to All
+                    </div>
+                    <div class="hero-topics">
+                        <span class="topic-badge">eBPF</span>
+                        <span class="topic-badge">Distributed Systems</span>
+                        <span class="topic-badge">LLMs</span>
+                        <span class="topic-badge">Programming Languages</span>
+                        <span class="topic-badge">Open Source</span>
+                    </div>
+                    <a href="#" class="cta-button">Join Next Session</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Graphics -->
+        <div class="section">
+            <h2 class="section-title">2. Social Media Templates</h2>
+            <div class="social-grid">
+                <!-- LinkedIn/Twitter Header -->
+                <div class="social-card">
+                    <div class="social-preview">
+                        <div class="social-content">
+                            <div class="social-title">THE CODERMANA HOUR</div>
+                            <div class="social-subtitle">Live Tech Sessions</div>
+                            <div class="social-details">Every Other Thursday • 7-8 PM IST</div>
+                            <div class="social-details">eBPF • Distributed Systems • LLMs • OSS</div>
+                        </div>
+                    </div>
+                    <div class="social-info">
+                        <h3>General Announcement (1200x630)</h3>
+                        <p>Use this for LinkedIn posts, Twitter cards, and general social media announcements.</p>
+                    </div>
+                </div>
+
+                <!-- Instagram Square -->
+                <div class="social-card">
+                    <div class="social-preview square">
+                        <div class="social-content">
+                            <div class="social-title">THE<br/>CODERMANA<br/>HOUR</div>
+                            <div class="social-subtitle">Live Every Other Thursday</div>
+                            <div class="social-details">7-8 PM IST • Free & Open</div>
+                        </div>
+                    </div>
+                    <div class="social-info">
+                        <h3>Instagram Post (1080x1080)</h3>
+                        <p>Square format optimized for Instagram and other social platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Newsletter -->
+        <div class="section">
+            <h2 class="section-title">3. Email Newsletter Template</h2>
+            <div class="email-template">
+                <div class="email-header">
+                    <div class="email-logo">THE CODERMANA HOUR</div>
+                </div>
+                <div class="email-body">
+                    <p>Hi there! 👋</p>
+
+                    <p>You're invited to join us for the next <strong>CoderMana Hour</strong> – our fortnightly live tech session where we dive deep into topics that matter to developers.</p>
+
+                    <div class="session-details">
+                        <strong>Next Session:</strong> [Topic Title]<br/>
+                        <strong>When:</strong> Thursday, [Date] at 7:00 PM IST<br/>
+                        <strong>Where:</strong> [Platform/Link]<br/>
+                        <strong>Duration:</strong> 1 Hour
+                    </div>
+
+                    <h2>What to Expect:</h2>
+                    <p>[Brief description of the upcoming topic – 2-3 sentences about what will be covered and what attendees will learn]</p>
+
+                    <h2>Who Should Join:</h2>
+                    <p>Whether you're a seasoned developer or just starting out, these sessions are designed to be accessible and engaging for everyone interested in modern software development.</p>
+
+                    <div style="text-align: center; margin: 30px 0;">
+                        <a href="#" class="cta-button">Register Now</a>
+                    </div>
+
+                    <p style="color: #888; font-size: 0.9em; margin-top: 30px;">
+                        Can't make it live? No worries! Sessions are recorded and shared with all registrants.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Page -->
+        <div class="section">
+            <h2 class="section-title">4. Upcoming Sessions Schedule</h2>
+            <div class="schedule">
+                <div class="schedule-header">
+                    <h2 style="color: #FF8C42; margin-bottom: 10px;">Upcoming Sessions</h2>
+                    <p style="color: #aaa;">Join us every other Thursday at 7 PM IST</p>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-date">Thursday, January 9, 2025 • 7:00 PM IST</div>
+                    <div class="schedule-topic">🔍 eBPF 101: Observing the Linux Kernel Safely</div>
+                    <div class="schedule-description">
+                        Discover how eBPF enables safe, performant kernel-level observability without kernel modules. We'll explore real-world use cases and write our first eBPF program.
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-date">Thursday, January 23, 2025 • 7:00 PM IST</div>
+                    <div class="schedule-topic">🦀 Building Your First Rust CLI Tool</div>
+                    <div class="schedule-description">
+                        Learn Rust fundamentals by building a practical command-line tool. We'll cover ownership, error handling, and leveraging the rich crates ecosystem.
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-date">Thursday, February 6, 2025 • 7:00 PM IST</div>
+                    <div class="schedule-topic">🤖 LLM Fundamentals: How Transformers Actually Work</div>
+                    <div class="schedule-description">
+                        Demystify large language models by understanding transformer architecture, attention mechanisms, and the training process behind models like GPT and Claude.
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-date">Thursday, February 20, 2025 • 7:00 PM IST</div>
+                    <div class="schedule-topic">🌐 Distributed Systems Patterns: Consistency vs Availability</div>
+                    <div class="schedule-description">
+                        Explore the CAP theorem in practice. We'll examine real-world tradeoffs in systems like Cassandra, PostgreSQL, and etcd.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
