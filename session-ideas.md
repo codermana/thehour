@@ -1,5 +1,8 @@
 # Session Ideas
 
+- Walking through many of the hacks and tools part of the NSA leak:
+  https://www.youtube.com/watch?v=fxqcwK5OMag
+
 - "eBPF 101: Observing the Linux Kernel Safely"
 
 - "Building Your First Rust CLI Tool"
