@@ -9,11 +9,21 @@ export default function Navbar() {
   return (
     <header className="border-b border-gray-200 dark:border-zinc-800 sticky top-0 bg-white/95 dark:bg-black/95 backdrop-blur-sm z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="#" className="text-2xl font-black text-codermana-orange hover:text-codermana-dark-orange transition-colors">
-                THE CODERMANA HOUR
+            <a href="/" className="text-2xl font-black text-codermana-orange hover:text-codermana-dark-orange transition-colors">
+                <div className="flex items-center gap-2 text-2xl font-bold">
+                    <img
+                        src="/favicon.svg"
+                        alt="CoderMana Logo"
+                        className="h-10 display-inline-block"
+                        width={35}
+                        height={40}
+                    />
+
+                    <span>THE CODERMANA HOUR</span>
+                </div>
             </a>
             <nav className="flex items-center gap-6">
-                <a href="#sessions" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
+                <a href="/sessions" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
                     Sessions
                 </a>
                 <a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">

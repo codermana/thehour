@@ -12,7 +12,7 @@ export default function NewsletterCTA() {
                     <input
                         type="email"
                         placeholder="your@email.com"
-                        className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                        className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white bg-white "
                         required
                     />
                     <button

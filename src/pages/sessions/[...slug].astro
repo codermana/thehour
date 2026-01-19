@@ -1,20 +1,39 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import NextSessionCTA from '../../components/cta/NextSessionCTA';
+import QandACTA from '../../components/cta/QandACTA';
+import Breadcrumb from '../../components/sessions/Breadcrumb';
+import Comments from '../../components/sections/Comments';
+import SessionDetails from '../../components/sessions/SessionDetails';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
+	const sessions = await getCollection('sessions');
+	return sessions.map((session) => ({
+		params: { slug: session.id },
+		props: session,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'sessions'>;
 
-const post = Astro.props;
-const { Content } = await render(post);
+const session = Astro.props;
+const { Content } = await render(session);
 ---
 
-<Layout {...post.data}>
-	<Content />
+<Layout {...session.data}>
+	<!-- Breadcrumb -->
+	<Breadcrumb/>
+
+	<article class="max-w-5xl mx-auto px-4 py-8">
+		<SessionDetails client:load>
+			<Content/>
+		</SessionDetails>
+
+		<Comments client:only/>
+
+		<!-- Q&A Section -->
+		<QandACTA/>
+
+		<NextSessionCTA/>
+	</article>
 </Layout>
