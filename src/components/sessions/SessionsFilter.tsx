@@ -47,7 +47,7 @@ export default function SessionsFilter({ sessions, selectedTopic, selectedYear, 
         </div>
 
         <div className="flex gap-2">
-          <Dropdown options={allStatus} defaultLabel="All Sessions" selectedOption={selectedStatus} onOptionSelect={(value: string | null) => setQueryParam("status", value)}/>
+          <Dropdown options={allStatus} defaultLabel="All Status" selectedOption={selectedStatus} onOptionSelect={(value: string | null) => setQueryParam("status", value)}/>
 
           <Dropdown options={uniqueYears} defaultLabel="All Years" selectedOption={selectedYear} onOptionSelect={(value: string | null) => setQueryParam("year", value)}/>
 
