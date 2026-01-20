@@ -13,7 +13,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.1",
-    "@tailwindcss/typography": "github:tailwindcss/typography",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
