@@ -1,17 +1,23 @@
 ---
-title: 'Markdown Style Guide'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
-pubDate: 'Jun 19 2024'
-heroImage: '../../assets/blog-placeholder-1.jpg'
-# id: 7,
-# title: "Introduction to WebAssembly",
-# description: "Run near-native code in the browser with WebAssembly.",
-# date: "2024-11-17",
-# status: "recorded",
-# topics: ["wasm", "web", "performance"],
-# duration: "51:20",
-# views: "1.5k",
-# slug: "wasm-intro"
+title: "Introduction to WebAssembly"
+description: "Run near-native code in the browser with WebAssembly."
+date: "2024-11-17"
+time: "7:00 PM IST"
+upcoming: false
+live: false
+topics: ["wasm", "web", "performance"]
+duration: 51:20
+resources:
+  slides: https://ebpf-intro.slides.codermana.com/
+  code: https://github.com/codermana/ebpf-examples
+  blog: https://blog.codermana.com/ebpf-deep-dive
+  videos:
+    - fullLink: https://youtube.com/watch?v=Pc1e1s6F5QM
+      embedLink: https://www.youtube.com/embed/Pc1e1s6F5QM?rel=0&modestbranding=1
+      platform: youtube
+    - fullLink: https://odysee.com/@thesanskritchannel:e/remedying-mistakes-in-devi-worship-2:f
+      embedLink: https://odysee.com/%24/embed/%40thesanskritchannel%3Ae%2Fremedying-mistakes-in-devi-worship-2%3Af?r=8m91coG2cADLMnjSt8VHGHMWn9kpCN4w
+      platform: odysee
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.

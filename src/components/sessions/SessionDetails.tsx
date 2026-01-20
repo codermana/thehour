@@ -3,13 +3,18 @@ import SessionHeader from "./details/SessionHeader";
 import SessionVideo from "./details/SessionVideo";
 import TopicTags from "./details/TopicTags";
 import SessionResources from "./details/SessionResources";
+import type { CollectionEntry } from "astro:content";
 
-export default function SessionDetails({ children } : PropsWithChildren) {
+type SessionDetailsProps = {
+  session: CollectionEntry<'sessions'>,
+};
+
+export default function SessionDetails({ children, session } : PropsWithChildren<SessionDetailsProps>) {
   return (
     <>
-      <SessionHeader/>
+      <SessionHeader session={session}/>
 
-      <SessionVideo/>
+      <SessionVideo session={session}/>
 
       <div className="bg-gray-50 dark:bg-zinc-900 rounded-xl p-8 mb-8 border border-gray-200 dark:border-zinc-800">
           <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Session Overview</h2>
@@ -18,9 +23,9 @@ export default function SessionDetails({ children } : PropsWithChildren) {
           </div>
       </div>
 
-      <TopicTags/>
+      <TopicTags topics={session.data.topics}/>
 
-      <SessionResources/>
+      <SessionResources resources={session.data.resources}/>
     </>
   );
 }

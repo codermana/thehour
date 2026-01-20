@@ -4,8 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 import SessionsIndex from '../../components/sessions/SessionsIndex';
 
 const sessions = (await getCollection('sessions')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	(a, b) => (new Date(`${b.data.date}T00:00:00`)).valueOf() - (new Date(`${a.data.date}T00:00:00`)).valueOf()
 );
+
 ---
 
 <Layout>
