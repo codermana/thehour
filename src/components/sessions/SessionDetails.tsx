@@ -3,10 +3,10 @@ import SessionHeader from "./details/SessionHeader";
 import SessionVideo from "./details/SessionVideo";
 import TopicTags from "./details/TopicTags";
 import SessionResources from "./details/SessionResources";
-import type { CollectionEntry } from "astro:content";
+import type { Session } from "../../data/Session";
 
 type SessionDetailsProps = {
-  session: CollectionEntry<'sessions'>,
+  session: Session,
 };
 
 export default function SessionDetails({ children, session } : PropsWithChildren<SessionDetailsProps>) {

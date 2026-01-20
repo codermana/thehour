@@ -2,14 +2,15 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SessionsIndex from '../../components/sessions/SessionsIndex';
+import { wrapSession } from '../../data/Session';
 
-const sessions = (await getCollection('sessions')).sort(
-	(a, b) => (new Date(`${b.data.date}T00:00:00`)).valueOf() - (new Date(`${a.data.date}T00:00:00`)).valueOf()
+const sessions = (await getCollection('sessions')).map(wrapSession).sort(
+	(a, b) => b.timestamp - a.timestamp
 );
 
 ---
 
 <Layout>
-	<SessionsIndex sessions={sessions} client:load>
+	<SessionsIndex sessions={sessions} client:only>
 	</SessionsIndex>
 </Layout>

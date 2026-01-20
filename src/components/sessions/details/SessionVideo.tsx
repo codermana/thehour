@@ -1,6 +1,6 @@
-import type { CollectionEntry } from "astro:content";
+import type { Session } from "../../../data/Session";
 
-export default function SessionVideo({ session }: { session: CollectionEntry<'sessions'> }) {
+export default function SessionVideo({ session }: { session: Session }) {
   if(!session.data.resources?.videos) {
     return null;
   }

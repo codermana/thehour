@@ -6,6 +6,7 @@ import QandACTA from '../../components/cta/QandACTA';
 import Breadcrumb from '../../components/sessions/Breadcrumb';
 import Comments from '../../components/sections/Comments';
 import SessionDetails from '../../components/sessions/SessionDetails';
+import { wrapSession } from '../../data/Session';
 
 export async function getStaticPaths() {
 	const sessions = await getCollection('sessions');
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'sessions'>;
 
-const session = Astro.props;
+const session = wrapSession(Astro.props);
 const { Content } = await render(session);
 ---
 

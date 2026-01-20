@@ -1,7 +1,7 @@
-import type { CollectionEntry } from "astro:content";
 import ResourceEntry from "./ResourceEntry";
+import type { Session } from "../../../data/Session";
 
-type SessionResources = CollectionEntry<"sessions">["data"]["resources"];
+type SessionResources = Session["data"]["resources"];
 
 let downloadIcon = (
   <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
