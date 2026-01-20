@@ -1,8 +1,10 @@
 import type { PropsWithChildren } from "react";
+
 import SessionHeader from "./details/SessionHeader";
 import SessionVideo from "./details/SessionVideo";
 import TopicTags from "./details/TopicTags";
 import SessionResources from "./details/SessionResources";
+
 import type { Session } from "../../data/Session";
 
 type SessionDetailsProps = {

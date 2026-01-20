@@ -9,7 +9,7 @@ export enum SESSION_STATUS {
   LIVE = "live",
 }
 
-export const SESSION_STATUS_COLORS: Record<SESSION_STATUS, string> = {
+const SESSION_STATUS_COLORS: Record<SESSION_STATUS, string> = {
     [SESSION_STATUS.UPCOMING]: 'bg-green-600',
     [SESSION_STATUS.RECORDED]: 'bg-blue-600',
     [SESSION_STATUS.LIVE]: 'bg-red-600 animate-pulse',

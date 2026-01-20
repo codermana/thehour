@@ -1,6 +1,5 @@
-import type { CollectionEntry } from "astro:content";
-
 import SessionCard from "./SessionCard";
+
 import type { Session } from "../../data/Session";
 
 export default function SessionsList({ sessions }: { sessions: Session[] }) {

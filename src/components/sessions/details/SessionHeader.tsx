@@ -1,4 +1,5 @@
 import SessionStatus from "./SessionStatus";
+
 import type { Session } from "../../../data/Session";
 
 export default function SessionHeader({ session }: { session: Session }) {

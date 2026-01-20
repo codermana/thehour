@@ -1,11 +1,13 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+
 import Layout from '../../layouts/Layout.astro';
 import NextSessionCTA from '../../components/cta/NextSessionCTA';
 import QandACTA from '../../components/cta/QandACTA';
 import Breadcrumb from '../../components/sessions/Breadcrumb';
 import Comments from '../../components/sections/Comments';
 import SessionDetails from '../../components/sessions/SessionDetails';
+
 import { wrapSession } from '../../data/Session';
 
 export async function getStaticPaths() {
