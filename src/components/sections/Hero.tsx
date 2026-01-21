@@ -24,7 +24,7 @@ export default function Hero() {
                     <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium">Open Source</span>
                 </div>
 
-                <a href="#sessions" className="inline-block bg-white text-codermana-dark-orange px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-xl hover:-translate-y-1 transition-all">
+                <a href="/sessions" className="inline-block bg-white text-codermana-dark-orange px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-xl hover:-translate-y-1 transition-all">
                     View All Sessions
                 </a>
             </div>
