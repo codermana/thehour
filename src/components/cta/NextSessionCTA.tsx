@@ -6,10 +6,10 @@ export default function NextSessionCTA() {
           Join us for "Building Your First Rust CLI Tool" on January 23, 2025
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="index.html#sessions" className="inline-block bg-white text-codermana-dark-orange px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+          <a href="/sessions" className="inline-block bg-white text-codermana-dark-orange px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
             View All Sessions
           </a>
-          <a href="index.html#subscribe" className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/30 transition-all">
+          <a href="/#subscribe" className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/30 transition-all">
             Subscribe to Newsletter
           </a>
         </div>

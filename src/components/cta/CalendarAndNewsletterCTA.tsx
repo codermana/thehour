@@ -12,7 +12,7 @@ export default function CalendarAndNewsletterCTA() {
           </svg>
           Subscribe to Calendar
         </button>
-        <a href="index.html#subscribe" className="inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white border-2 border-white px-6 py-3 rounded-full font-bold hover:bg-white/30 transition-all">
+        <a href="/#subscribe" className="inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white border-2 border-white px-6 py-3 rounded-full font-bold hover:bg-white/30 transition-all">
           Get Email Updates
         </a>
       </div>
