@@ -23,7 +23,7 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
             }
 
             // Filter by year
-            if (selectedYear && (new Date(session.data.date).getFullYear().toString()) != selectedYear) {
+            if (selectedYear && (session.year != selectedYear)) {
                 return false;
             }
 
@@ -50,7 +50,7 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
             }
             return true;
         }).sort(
-            (a, b) => (new Date(b.data.date)).valueOf() - (new Date(a.data.date)).valueOf(),
+            (a, b) => (b.timestamp - a.timestamp).valueOf(),
         );
     }, [selectedTopic, searchQuery, selectedYear, selectedStatus]);
 

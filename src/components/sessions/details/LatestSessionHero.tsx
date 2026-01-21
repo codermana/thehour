@@ -33,7 +33,7 @@ export default function LatestSessionHero({ session }: { session: Session }) {
 
           <div className="p-6">
               <p className="text-codermana-orange font-semibold text-sm mb-2">
-                  {session.formattedDate} • {session.data.time}
+                  {session.formattedDate} • {session.formattedTime}
               </p>
               <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-codermana-orange transition-colors">
                   {session.data.title}

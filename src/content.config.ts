@@ -24,8 +24,7 @@ const sessions = defineCollection({
 		z.object({
       title: z.string(),
       description: z.string(),
-      date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-      time: z.string(),
+      startTime: z.string().datetime({ offset: true }).refine(v => v.endsWith('+05:30'), 'Must be IST (+05:30)'),
       upcoming: z.boolean(),
       live: z.boolean(),
       joinLink: z.string().optional(),

@@ -16,7 +16,7 @@ export default function UpcomingSessions({ sessions } : { sessions: Session[] })
               {session.status}
             </span>
             <p className="text-codermana-orange font-semibold text-sm mb-2">
-              {session.formattedDate} • {session.data.time}
+              {session.formattedDate} • {session.formattedTime}
             </p>
             <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors">
               {session.data.title}

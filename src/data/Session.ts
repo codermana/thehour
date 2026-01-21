@@ -1,5 +1,4 @@
 import type { CollectionEntry } from 'astro:content';
-import formatHumanDate from '../helpers/formatHumanDate';
 
 type AstroSession = CollectionEntry<'sessions'>;
 
@@ -26,20 +25,34 @@ export function wrapSession(session: AstroSession) {
     }
   }
 
+  const date = new Date(session.data.startTime);
+
   return {
     ...session,
 
     // derived fields
-    year: session.data.date.slice(0, 4),
+    year: date.getFullYear().toString(),
     slugPath: `/sessions/${session.id}`,
     status: status,
-    timestamp: +new Date(`${session.data.date}T00:00:00`),
+    timestamp: +date,
     isRecorded: status == SESSION_STATUS.RECORDED,
     isUpcoming: status == SESSION_STATUS.UPCOMING,
     isLive: status == SESSION_STATUS.LIVE,
 
     statusColor: SESSION_STATUS_COLORS[status],
-    formattedDate: formatHumanDate(session.data.date),
+
+    formattedDate: date.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
+    formattedTime: date.toLocaleTimeString(undefined, {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZoneName: 'short',
+    }),
   };
 }
 

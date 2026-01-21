@@ -7,7 +7,7 @@ export default function SessionHeader({ session }: { session: Session }) {
     <div className="mb-8">
       <SessionStatus session={session}/>
       <p className="text-codermana-orange font-semibold mb-3">
-        {session.formattedDate} • {session.data.time}
+        {session.formattedDate} • {session.formattedTime}
       </p>
       <h1 className="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
         {session.data.title}
