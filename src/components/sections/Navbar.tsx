@@ -26,8 +26,11 @@ export default function Navbar() {
                 <a href="/sessions" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
                     Sessions
                 </a>
-                <a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
+                <a href="/#about" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
                     About
+                </a>
+                <a href="/#faq" className="text-gray-600 dark:text-gray-400 hover:text-codermana-orange dark:hover:text-codermana-orange transition-colors hidden sm:block">
+                    FAQ
                 </a>
 
                 <button id="theme-toggle" onClick={toggleTheme} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors" aria-label="Toggle theme">
