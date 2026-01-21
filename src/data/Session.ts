@@ -35,24 +35,12 @@ export function wrapSession(session: AstroSession) {
     slugPath: `/sessions/${session.id}`,
     status: status,
     timestamp: +date,
+    startDateTime: date,
     isRecorded: status == SESSION_STATUS.RECORDED,
     isUpcoming: status == SESSION_STATUS.UPCOMING,
     isLive: status == SESSION_STATUS.LIVE,
 
     statusColor: SESSION_STATUS_COLORS[status],
-
-    formattedDate: date.toLocaleDateString(undefined, {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }),
-    formattedTime: date.toLocaleTimeString(undefined, {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZoneName: 'short',
-    }),
   };
 }
 

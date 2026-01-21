@@ -1,6 +1,7 @@
 import getResourceCount from "../../../data/resources";
 import type { Session } from "../../../data/Session";
 import { getThumbnail } from "../../../data/video";
+import DateTime from "../../generic/DateTime";
 
 export default function LatestSessionHero({ session }: { session: Session }) {
   return (
@@ -33,7 +34,7 @@ export default function LatestSessionHero({ session }: { session: Session }) {
 
           <div className="p-6">
               <p className="text-codermana-orange font-semibold text-sm mb-2">
-                  {session.formattedDate} • {session.formattedTime}
+                <DateTime timestamp={session.startDateTime}/>
               </p>
               <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-codermana-orange transition-colors">
                   {session.data.title}

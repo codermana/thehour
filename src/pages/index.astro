@@ -24,8 +24,8 @@ const liveSession = sessions.filter((session) => session.isLive)[0];
 
 <Layout>
 	<Hero/>
-	<SessionHero latestSession={latestSession} liveSession={liveSession}/>
-	<UpcomingSessions sessions={upcomingSessions}/>
+	<SessionHero latestSession={latestSession} liveSession={liveSession} client:load/>
+	<UpcomingSessions sessions={upcomingSessions} client:load/>
 	<About/>
 	<FAQ/>
 	<NewsletterCTA/>

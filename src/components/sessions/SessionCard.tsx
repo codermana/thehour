@@ -1,4 +1,5 @@
 import type { Session } from "../../data/Session";
+import FormattedDate from "../generic/FormattedDate";
 
 export default function SessionCard({session}: {session: Session}) {
     return (
@@ -14,7 +15,7 @@ export default function SessionCard({session}: {session: Session}) {
                 }
             </div>
             <p className="text-codermana-orange font-semibold text-sm mb-2">
-                {session.formattedDate}
+                <FormattedDate timestamp={session.startDateTime}/>
             </p>
             <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-codermana-orange transition-colors">
                 {session.data.title}

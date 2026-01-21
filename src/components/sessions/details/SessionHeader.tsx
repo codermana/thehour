@@ -1,13 +1,14 @@
 import SessionStatus from "./SessionStatus";
 
 import type { Session } from "../../../data/Session";
+import DateTime from "../../generic/DateTime";
 
 export default function SessionHeader({ session }: { session: Session }) {
   return (
     <div className="mb-8">
       <SessionStatus session={session}/>
       <p className="text-codermana-orange font-semibold mb-3">
-        {session.formattedDate} • {session.formattedTime}
+        <DateTime timestamp={session.startDateTime}/>
       </p>
       <h1 className="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
         {session.data.title}
