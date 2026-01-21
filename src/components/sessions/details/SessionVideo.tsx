@@ -1,4 +1,5 @@
 import type { Session } from "../../../data/Session";
+import { VIDEO_PLATFORM } from "../../../data/video";
 
 export default function SessionVideo({ session }: { session: Session }) {
   if(!session.data.resources?.videos) {
@@ -6,11 +7,11 @@ export default function SessionVideo({ session }: { session: Session }) {
   }
 
   const youtube = session.data.resources?.videos?.find(
-    (video) => video.platform == "youtube"
+    (video) => video.platform == VIDEO_PLATFORM.YOUTUBE
   );
 
   const odysee = session.data.resources?.videos?.find(
-    (video) => video.platform == "odysee"
+    (video) => video.platform == VIDEO_PLATFORM.ODYSEE
   );
 
   let mainVideo = youtube || odysee; // YouTube is getting preference over odysee, for NOW!

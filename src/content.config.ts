@@ -5,6 +5,7 @@ const videosSchema = z.object({
   fullLink: z.string().url(),
   embedLink: z.string().url(),
   platform: z.string(),
+  thumbnail: z.string().optional()
 });
 
 const resourcesSchema = z.object({
@@ -27,6 +28,7 @@ const sessions = defineCollection({
       time: z.string(),
       upcoming: z.boolean(),
       live: z.boolean(),
+      joinLink: z.string().optional(),
       duration: z.string().optional(), // "51:20"
       topics: z.array(z.string()).min(1),
 			heroImage: image().optional(),

@@ -10,9 +10,9 @@ export enum SESSION_STATUS {
 }
 
 const SESSION_STATUS_COLORS: Record<SESSION_STATUS, string> = {
-    [SESSION_STATUS.UPCOMING]: 'bg-green-600',
-    [SESSION_STATUS.RECORDED]: 'bg-blue-600',
-    [SESSION_STATUS.LIVE]: 'bg-red-600 animate-pulse',
+  [SESSION_STATUS.UPCOMING]: 'bg-green-600',
+  [SESSION_STATUS.RECORDED]: 'bg-blue-600',
+  [SESSION_STATUS.LIVE]: 'bg-red-600 animate-pulse',
 };
 
 export function wrapSession(session: AstroSession) {
@@ -34,6 +34,9 @@ export function wrapSession(session: AstroSession) {
     slugPath: `/sessions/${session.id}`,
     status: status,
     timestamp: +new Date(`${session.data.date}T00:00:00`),
+    isRecorded: status == SESSION_STATUS.RECORDED,
+    isUpcoming: status == SESSION_STATUS.UPCOMING,
+    isLive: status == SESSION_STATUS.LIVE,
 
     statusColor: SESSION_STATUS_COLORS[status],
     formattedDate: formatHumanDate(session.data.date),
