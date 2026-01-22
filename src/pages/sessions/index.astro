@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SessionsIndex from '../../components/sessions/SessionsIndex';
 import { wrapSession } from '../../data/Session';
+import CalendarAndNewsletterCTA from '../../components/cta/CalendarAndNewsletterCTA.astro';
 
 const sessions = (await getCollection('sessions')).map(wrapSession).sort(
 	(a, b) => b.timestamp - a.timestamp
@@ -13,4 +14,5 @@ const sessions = (await getCollection('sessions')).map(wrapSession).sort(
 <Layout>
 	<SessionsIndex sessions={sessions} client:only>
 	</SessionsIndex>
+	<CalendarAndNewsletterCTA/>
 </Layout>

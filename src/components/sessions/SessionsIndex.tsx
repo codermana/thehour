@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 
 import useQueryParams from '../helpers/useQueryParams';
 import SessionsFilter from './SessionsFilter';
-import CalendarAndNewsletterCTA from '../cta/CalendarAndNewsletterCTA';
 import SessionsList from './SessionsList';
 
 import { SESSION_STATUS, type Session } from '../../data/Session';
@@ -78,8 +77,6 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
         </div>
 
         <SessionsList sessions={filteredSessions}/>
-
-        <CalendarAndNewsletterCTA/>
     </div>
   );
 }
