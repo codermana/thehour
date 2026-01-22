@@ -1,0 +1,49 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+import Layout from '../layouts/Layout.astro';
+import NextSessionCTA from '../components/cta/NextSessionCTA';
+import QandACTA from '../components/cta/QandACTA';
+import Breadcrumb from '../components/sessions/Breadcrumb';
+import Comments from '../components/sections/Comments';
+import SessionDetails from '../components/sessions/SessionDetails';
+
+import { wrapSession } from '../data/Session';
+
+export async function getStaticPaths() {
+	const sessions = await getCollection('sessions');
+	return sessions.map((session) => ({
+		params: { slug: session.id },
+		props: session,
+	}));
+}
+type Props = CollectionEntry<'sessions'>;
+
+const sessions = (await getCollection('sessions')).map(wrapSession).sort(
+	(a, b) => b.timestamp - a.timestamp
+);
+
+const upcomingSession = sessions.filter((session) => session.isUpcoming ).at(-1);
+const liveSession = sessions.filter((session) => session.isLive)[0];
+
+const session = liveSession || upcomingSession;
+const { Content } = await render(session);
+---
+
+<Layout>
+	<!-- Breadcrumb -->
+	<Breadcrumb title={session.data.title}/>
+
+	<article class="max-w-5xl mx-auto px-4 py-8">
+		<SessionDetails client:load session={session}>
+			<Content/>
+		</SessionDetails>
+
+		<Comments client:only/>
+
+		<!-- Q&A Section -->
+		<QandACTA/>
+
+		<NextSessionCTA/>
+	</article>
+</Layout>
