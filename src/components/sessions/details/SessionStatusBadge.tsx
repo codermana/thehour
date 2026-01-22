@@ -26,7 +26,7 @@ const STATUS_BADGE_COLORS = {
   }
 }
 
-export default function SessionStatus({ session }: { session: Session }) {
+export default function SessionStatusBadge({ session }: { session: Session }) {
   let status = computeSessionStatus(session.startDateTime);
   let colors = STATUS_BADGE_COLORS[status];
 

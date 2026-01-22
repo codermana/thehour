@@ -7,8 +7,7 @@ import SessionResources from "./details/SessionResources";
 
 import type { Session } from "../../data/Session";
 import Countdown from "./details/Countdown";
-import SessionStatus from "./details/SessionStatus";
-import useClock from "../helpers/useClock";
+import SessionStatusBadge from "./details/SessionStatusBadge";
 
 type SessionDetailsProps = {
   session: Session,
@@ -18,8 +17,8 @@ export default function SessionDetails({ children, session } : PropsWithChildren
   return (
     <>
       <div className="mb-8 text-center">
-        <Countdown startTime={session.startDateTime} joinLink={session.data.joinLink}/>
-        <SessionStatus session={session}/>
+        <SessionStatusBadge session={session}/>
+        <Countdown session={session}/>
       </div>
       <SessionHeader session={session}/>
 
