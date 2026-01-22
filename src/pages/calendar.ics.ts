@@ -1,8 +1,5 @@
-import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { wrapSession } from "../data/Session";
-
-export const prerender = false;
 
 /**
  * Convert ISO string with offset to UTC ICS format: YYYYMMDDTHHmmssZ
@@ -20,10 +17,10 @@ function sessionUID(sessionId: string) {
   return `thehour-${sessionId}@codermana.com`;
 }
 
-export const GET: APIRoute = async () => {
-  const sessions = await getCollection("sessions");
+export async function GET(context) {
+  const sessions = (await getCollection("sessions")).map(wrapSession);
 
-  const events = sessions.map(wrapSession).filter((session) => !session.isRecorded).map((entry) => {
+  const events = sessions.filter((session) => !session.isRecorded).map((entry) => {
     const {
       title,
       description,
@@ -52,7 +49,7 @@ export const GET: APIRoute = async () => {
       `DTEND:${toICSDate(end.toISOString())}`,
       `SUMMARY:${title}`,
       `DESCRIPTION:${description.replace(/\n/g, "\\n")}`,
-      `LOCATION:https://thehour.codermana.com/sessions/${entry.id}`,
+      `LOCATION:${context.site}/sessions/${entry.id}`,
       "END:VEVENT",
     ].join("\r\n");
   });
