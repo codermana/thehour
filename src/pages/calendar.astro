@@ -3,7 +3,8 @@ import Layout from "../layouts/Layout.astro";
 
 import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
 
-let calendarLink = `${Astro.site}calendar.ics`
+const canonicalURL = new URL('calendar.ics', Astro.site);
+let calendarLink = canonicalURL.toString();
 ---
 
 <Layout>
