@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import getResourceCount from "../../../data/resources";
-import type { Session } from "../../../data/Session";
+import { SESSION_STATUS_COLOR, type Session } from "../../../data/Session";
 import { getThumbnail } from "../../../data/video";
 import DateTime from "../../generic/DateTime";
+import { computeSessionStatus } from "../../../data/computeSessionStatus";
 
 export default function LatestSessionHero({ session }: { session: Session }) {
+  let [status, setStatus] = useState(computeSessionStatus(session.startDateTime));
+
+  useEffect(() => {
+    setStatus(computeSessionStatus(session.startDateTime));
+  }, [])
+
   let thumbnail = getThumbnail(session);
   return (
     <section id="sessions" className="max-w-7xl mx-auto px-4 py-12">
@@ -27,11 +35,11 @@ export default function LatestSessionHero({ session }: { session: Session }) {
                       </div>
                   </div>
               </div>
-              <div className={"absolute top-4 left-4 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg uppercase " + session.statusColor}>
+              <div className={`absolute top-4 left-4 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg uppercase ${SESSION_STATUS_COLOR[status]}`}>
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
                   </svg>
-                  {session.status}
+                  {status}
               </div>
           </div>
 

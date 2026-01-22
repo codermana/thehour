@@ -5,6 +5,7 @@ import SessionsFilter from './SessionsFilter';
 import SessionsList from './SessionsList';
 
 import { SESSION_STATUS, type Session } from '../../data/Session';
+import { isRecorded } from '../../data/status';
 
 export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
     const query = useQueryParams();
@@ -28,11 +29,11 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
 
             // Filter by status
             if (selectedStatus) {
-                if (selectedStatus == SESSION_STATUS.RECORDED && !session.isRecorded) {
+                if (selectedStatus == SESSION_STATUS.RECORDED && !isRecorded(session)) {
                     return false;
                 }
 
-                if (selectedStatus == SESSION_STATUS.UPCOMING && session.isRecorded) {
+                if (selectedStatus == SESSION_STATUS.UPCOMING && isRecorded(session)) {
                     return false;
                 }
             }

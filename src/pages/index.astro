@@ -4,28 +4,22 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 import Hero from '../components/sections/Hero';
-import SessionHero from '../components/sessions/SessionHero';
 import NewsletterCTA from '../components/cta/NewsletterCTA';
-import UpcomingSessions from '../components/sessions/UpcomingSessions';
 import About from '../components/sections/About.astro';
 
 import { wrapSession } from '../data/Session';
 import FAQ from '../components/sections/FAQ.astro';
+import HomeSessions from '../components/sessions/HomeSessions';
 
 const sessions = (await getCollection('sessions')).map(wrapSession).sort(
 	(a, b) => b.timestamp - a.timestamp
 );
 
-const upcomingSessions = sessions.filter((session) => session.isUpcoming );
-const latestSession = sessions.filter((session) => session.isRecorded)[0];
-const liveSession = sessions.filter((session) => session.isLive)[0];
-
 ---
 
 <Layout>
 	<Hero/>
-	<SessionHero latestSession={latestSession} liveSession={liveSession} client:load/>
-	<UpcomingSessions sessions={upcomingSessions} client:load/>
+	<HomeSessions sessions={sessions} client:load/>
 	<About/>
 	<FAQ/>
 	<NewsletterCTA/>

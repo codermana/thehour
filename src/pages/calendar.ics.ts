@@ -2,6 +2,7 @@ import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
 import { wrapSession } from "../data/Session";
+import { isRecorded } from "../data/status";
 
 /**
  * Convert ISO string with offset to UTC ICS format: YYYYMMDDTHHmmssZ
@@ -22,7 +23,7 @@ function sessionUID(sessionId: string) {
 export async function GET(context: APIContext) {
   const sessions = (await getCollection("sessions")).map(wrapSession);
 
-  const events = sessions.filter((session) => !session.isRecorded).map((entry) => {
+  const events = sessions.filter((session) => !isRecorded(session)).map((entry) => {
     const {
       title,
       description,

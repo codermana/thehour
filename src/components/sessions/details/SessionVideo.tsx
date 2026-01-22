@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import { SESSION_STATUS, type Session } from "../../../data/Session";
 import { VIDEO_PLATFORM } from "../../../data/video";
+import { computeSessionStatus } from "../../../data/computeSessionStatus";
 
 export default function SessionVideo({ session }: { session: Session }) {
+  let [status, setStatus] = useState(computeSessionStatus(session.startDateTime));
+
+  useEffect(() => {
+    setStatus(computeSessionStatus(session.startDateTime));
+  }, [])
+
   if(!session.data.resources?.videos) {
-    if(session.status != SESSION_STATUS.RECORDED) {
+    if(status != SESSION_STATUS.RECORDED) {
       return null;
     }
 
