@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-const CALENDAR_URL = "https://thehour.codermana.com/calendar.ics";
-
-export default function CalendarFeedBox() {
+export default function CalendarFeedBox({ url }: { url : string } ) {
   const [copied, setCopied] = useState(false);
 
   const copyCalendarURL = async () => {
     try {
-      await navigator.clipboard.writeText(CALENDAR_URL);
+      await navigator.clipboard.writeText(url);
       setCopied(true);
 
       setTimeout(() => {
@@ -15,7 +13,7 @@ export default function CalendarFeedBox() {
       }, 2000);
     } catch (err) {
       alert(
-        "Failed to copy. Please copy manually: https://thehour.codermana.com/calendar.ics"
+        `Failed to copy. Please copy manually: ${url}`
       );
     }
   };
@@ -30,7 +28,7 @@ export default function CalendarFeedBox() {
 
       <div onClick={copyCalendarURL} className="bg-white/20 backdrop-blur-sm rounded-lg p-4 mb-4 border border-white/30 cursor-pointer">
         <code className="text-white font-mono text-sm break-all">
-          {CALENDAR_URL}
+          {url}
         </code>
       </div>
 

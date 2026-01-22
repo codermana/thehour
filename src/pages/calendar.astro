@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 
 import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
+
+let calendarLink = `${Astro.site}calendar.ics`
 ---
 
 <Layout>
@@ -22,7 +24,7 @@ import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
       </div>
 
       <!-- Calendar URL Box -->
-      <CalendarFeedBox client:load/>
+      <CalendarFeedBox url={calendarLink} client:load/>
 
       <!-- Instructions by Platform -->
       <div class="space-y-6 mb-12">
@@ -75,7 +77,7 @@ import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
                 <span>
                   Paste the calendar URL:
                   <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">
-                    https://thehour.codermana.com/calendar.ics
+                    {calendarLink}
                   </code>
                 </span>
               </li>
@@ -122,7 +124,7 @@ import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
               </li>
               <li class="flex gap-3">
                 <span class="font-semibold text-codermana-orange">4.</span>
-                <span>Paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">https://thehour.codermana.com/calendar.ics</code></span>
+                <span>Paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">{calendarLink}</code></span>
               </li>
               <li class="flex gap-3">
                 <span class="font-semibold text-codermana-orange">5.</span>
@@ -284,7 +286,7 @@ import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
               </li>
             </ul>
             <p class="text-gray-600 dark:text-gray-400 mt-4">
-              Then paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">https://thehour.codermana.com/calendar.ics</code>
+              Then paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">{calendarLink}</code>
             </p>
           </div>
         </div>
