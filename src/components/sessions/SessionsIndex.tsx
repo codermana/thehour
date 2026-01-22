@@ -54,16 +54,7 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
     }, [selectedTopic, searchQuery, selectedYear, selectedStatus]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-                All Sessions
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Explore our complete collection of tech sessions covering systems programming, cloud native, LLMs, and more.
-            </p>
-        </div>
-
+    <>
         <SessionsFilter
             sessions={sessions}
             selectedTopic={selectedTopic}
@@ -77,6 +68,6 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
         </div>
 
         <SessionsList sessions={filteredSessions}/>
-    </div>
+    </>
   );
 }

@@ -12,7 +12,20 @@ const sessions = (await getCollection('sessions')).map(wrapSession).sort(
 ---
 
 <Layout>
-	<SessionsIndex sessions={sessions} client:only>
-	</SessionsIndex>
+
+	<div class="max-w-7xl mx-auto px-4 py-12">
+		<div class="text-center mb-12">
+			<h1 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
+					All Sessions
+			</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+					Explore our complete collection of tech sessions covering systems programming, cloud native, LLMs, and more.
+			</p>
+		</div>
+
+		<SessionsIndex sessions={sessions} client:only>
+		</SessionsIndex>
+	</div>
+
 	<CalendarAndNewsletterCTA/>
 </Layout>
