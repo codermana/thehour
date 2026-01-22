@@ -1,4 +1,6 @@
+import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
+
 import { wrapSession } from "../data/Session";
 
 /**
@@ -17,7 +19,7 @@ function sessionUID(sessionId: string) {
   return `thehour-${sessionId}@codermana.com`;
 }
 
-export async function GET(context) {
+export async function GET(context: APIContext) {
   const sessions = (await getCollection("sessions")).map(wrapSession);
 
   const events = sessions.filter((session) => !session.isRecorded).map((entry) => {
