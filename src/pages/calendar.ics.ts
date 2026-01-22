@@ -40,6 +40,7 @@ export async function GET(context) {
           (parseInt(min) * 60 + parseInt(sec)) * 1000
       );
     }
+    let location = new URL(`/sessions/${entry.id}`, context.site).toString();
 
     return [
       "BEGIN:VEVENT",
@@ -49,7 +50,7 @@ export async function GET(context) {
       `DTEND:${toICSDate(end.toISOString())}`,
       `SUMMARY:${title}`,
       `DESCRIPTION:${description.replace(/\n/g, "\\n")}`,
-      `LOCATION:${context.site}/sessions/${entry.id}`,
+      `LOCATION:${location}`,
       "END:VEVENT",
     ].join("\r\n");
   });
