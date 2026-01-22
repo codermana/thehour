@@ -3,7 +3,7 @@ import { VIDEO_PLATFORM } from "../../../data/video";
 
 export default function SessionVideo({ session }: { session: Session }) {
   if(!session.data.resources?.videos) {
-    return null;
+    return <p className="text-2xl text-center font-bold text-codermana-orange my-8">video will be uploaded soon</p>;
   }
 
   const youtube = session.data.resources?.videos?.find(

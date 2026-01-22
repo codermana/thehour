@@ -4,6 +4,7 @@ import { getThumbnail } from "../../../data/video";
 import DateTime from "../../generic/DateTime";
 
 export default function LatestSessionHero({ session }: { session: Session }) {
+  let thumbnail = getThumbnail(session);
   return (
     <section id="sessions" className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Latest Session</h2>
@@ -11,11 +12,13 @@ export default function LatestSessionHero({ session }: { session: Session }) {
       <a href={"/sessions/"+session.id} className="block bg-gray-50 dark:bg-zinc-900 rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-800 hover:border-codermana-orange dark:hover:border-codermana-orange transition-all hover:shadow-lg group">
           <div className="relative bg-black">
               <div className="aspect-video">
+                {thumbnail &&
                   <img
                       src={getThumbnail(session)}
                       alt={session.data.title}
                       className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
                   />
+                }
                   <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-codermana-orange group-hover:bg-codermana-dark-orange w-20 h-20 rounded-full flex items-center justify-center transition-all group-hover:scale-110 shadow-2xl">
                           <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
