@@ -6,6 +6,9 @@ import TopicTags from "./details/TopicTags";
 import SessionResources from "./details/SessionResources";
 
 import type { Session } from "../../data/Session";
+import Countdown from "./details/Countdown";
+import SessionStatus from "./details/SessionStatus";
+import useClock from "../helpers/useClock";
 
 type SessionDetailsProps = {
   session: Session,
@@ -14,6 +17,10 @@ type SessionDetailsProps = {
 export default function SessionDetails({ children, session } : PropsWithChildren<SessionDetailsProps>) {
   return (
     <>
+      <div className="mb-8 text-center">
+        <Countdown startTime={session.startDateTime} joinLink={session.data.joinLink}/>
+        <SessionStatus session={session}/>
+      </div>
       <SessionHeader session={session}/>
 
       <SessionVideo session={session}/>

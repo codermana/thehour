@@ -5,7 +5,7 @@ import SessionsFilter from './SessionsFilter';
 import CalendarAndNewsletterCTA from '../cta/CalendarAndNewsletterCTA';
 import SessionsList from './SessionsList';
 
-import type { Session } from '../../data/Session';
+import { SESSION_STATUS, type Session } from '../../data/Session';
 
 export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
     const query = useQueryParams();
@@ -29,11 +29,11 @@ export default function SessionsIndex({ sessions }: { sessions: Session[] }) {
 
             // Filter by status
             if (selectedStatus) {
-                if (selectedStatus == "recorded" && session.data.upcoming) {
+                if (selectedStatus == SESSION_STATUS.RECORDED && !session.isRecorded) {
                     return false;
                 }
 
-                if (selectedStatus == "upcoming" && !session.data.upcoming) {
+                if (selectedStatus == SESSION_STATUS.UPCOMING && session.isRecorded) {
                     return false;
                 }
             }

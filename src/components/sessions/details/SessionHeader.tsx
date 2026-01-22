@@ -1,12 +1,9 @@
-import SessionStatus from "./SessionStatus";
-
 import type { Session } from "../../../data/Session";
 import DateTime from "../../generic/DateTime";
 
 export default function SessionHeader({ session }: { session: Session }) {
   return (
     <div className="mb-8">
-      <SessionStatus session={session}/>
       <p className="text-codermana-orange font-semibold mb-3">
         <DateTime timestamp={session.startDateTime}/>
       </p>

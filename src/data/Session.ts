@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { computeSessionStatus } from './computeSessionStatus';
 
 type AstroSession = CollectionEntry<'sessions'>;
 
@@ -8,24 +9,15 @@ export enum SESSION_STATUS {
   LIVE = "live",
 }
 
-const SESSION_STATUS_COLORS: Record<SESSION_STATUS, string> = {
+const STATUS_COLORS: Record<SESSION_STATUS, string> = {
   [SESSION_STATUS.UPCOMING]: 'bg-green-600',
   [SESSION_STATUS.RECORDED]: 'bg-blue-600',
   [SESSION_STATUS.LIVE]: 'bg-red-600 animate-pulse',
 };
 
 export function wrapSession(session: AstroSession) {
-  let status = SESSION_STATUS.RECORDED;
-
-  if(session.data.upcoming) {
-    status = SESSION_STATUS.UPCOMING;
-
-    if(session.data.live) {
-      status = SESSION_STATUS.LIVE;
-    }
-  }
-
   const date = new Date(session.data.startTime);
+  let status = computeSessionStatus(date);
 
   return {
     ...session,
@@ -40,7 +32,7 @@ export function wrapSession(session: AstroSession) {
     isUpcoming: status == SESSION_STATUS.UPCOMING,
     isLive: status == SESSION_STATUS.LIVE,
 
-    statusColor: SESSION_STATUS_COLORS[status],
+    statusColor: STATUS_COLORS[status],
   };
 }
 
