@@ -13,7 +13,7 @@ export default function Hero() {
                     Live Tech Sessions Every Other Thursday
                 </p>
                 <p className="text-lg md:text-xl mb-8 opacity-90">
-                    🗓️ Fortnightly • ⏰ 7-8 PM IST • 🌍 Free & Open to All
+                    🗓️ Fortnightly • ⏰ 7-8 PM IST • 🌏 Free & Open to All
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-3 mb-8">
