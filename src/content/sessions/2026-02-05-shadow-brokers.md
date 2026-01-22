@@ -12,8 +12,6 @@ This unprecedented leak revealed potent zero-day exploits, backdoors, and attack
 
 Attendees will come away with a clear understanding of how nation-state level tooling can shape the threat landscape when it escapes into the wild — and how defenders can prepare.
 
-Here’s a **session plan** (title, description, and content outline) you can use for a talk that walks through many of the hacks and tools referenced in the **NSA/Shadow Brokers leak** — including what the leak was, the tools involved, how they worked, and their real-world impact.
-
 ## ** Session Outline & Content**
 
 ### **1. Background: NSA, Equation Group & Shadow Brokers**
