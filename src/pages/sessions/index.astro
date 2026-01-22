@@ -25,7 +25,6 @@ const sessions = (await getCollection('sessions')).map(wrapSession).sort(
 
 		<SessionsIndex sessions={sessions} client:only>
 		</SessionsIndex>
+		<CalendarAndNewsletterCTA/>
 	</div>
-
-	<CalendarAndNewsletterCTA/>
 </Layout>
