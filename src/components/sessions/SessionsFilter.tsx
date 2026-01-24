@@ -50,11 +50,11 @@ export default function SessionsFilter({ sessions, selectedTopic, selectedYear, 
           <Dropdown options={allStatus} defaultLabel="All Status" selectedOption={selectedStatus} onOptionSelect={(value: string | null) => setQueryParam("status", value)}/>
 
           <Dropdown options={uniqueYears} defaultLabel="All Years" selectedOption={selectedYear} onOptionSelect={(value: string | null) => setQueryParam("year", value)}/>
-
-          <Dropdown options={allTopics} defaultLabel="All Topics" selectedOption={selectedTopic} onOptionSelect={(value: string | null) => setQueryParam("topic", value)}/>
         </div>
 
         <div className="flex gap-2">
+          <Dropdown options={allTopics} defaultLabel="All Topics" selectedOption={selectedTopic} onOptionSelect={(value: string | null) => setQueryParam("topic", value)}/>
+
           <a href="/sessions">
             <button className="px-4 py-3 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">Reset</button>
           </a>
