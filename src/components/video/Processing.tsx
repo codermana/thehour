@@ -41,7 +41,7 @@ export default function Processing() {
             <div className="absolute inset-0 bg-codermana-orange/30 rounded-full blur-2xl animate-pulse" />
             <div className="relative bg-linear-to-br from-codermana-orange to-codermana-dark-orange p-6 rounded-2xl">
               <svg
-                className="w-16 h-16 text-white animate-spin"
+                className="w-8 h-8 md:w-16 md:h-16 text-white animate-spin"
                 style={{ animationDuration: '2s' }}
                 fill="none"
                 stroke="currentColor"
@@ -63,15 +63,15 @@ export default function Processing() {
 
           <p className="text-gray-600 dark:text-gray-300 text-center mb-6 max-w-md">
             We're editing, processing and uploading the recording. This usually
-            takes 2–3 days after the session ends.
+            takes 2-3 days after the session ends.
           </p>
 
           {/* Progress */}
-          <div className="w-full max-w-md mb-6">
+          <div className="w-full max-w-md mb-6 hidden md:block">
             <div className="bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
               <div
                 className="bg-linear-to-r from-codermana-orange to-codermana-dark-orange h-full rounded-full animate-pulse"
-                style={{ width: '65%' }}
+                style={{ width: '23%' }}
               />
             </div>
             <p className="text-gray-500 dark:text-gray-400 text-sm text-center mt-2">
@@ -81,11 +81,9 @@ export default function Processing() {
 
           {/* While you wait */}
           <div
-            className="
-              max-w-md rounded-xl p-4 border backdrop-blur-sm
+            className="max-w-md rounded-xl p-4 border backdrop-blur-sm
               bg-white/70 border-gray-200
-              dark:bg-gray-800/50 dark:border-gray-700
-            "
+              dark:bg-gray-800/50 dark:border-gray-700 hidden lg:block"
           >
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
               <strong className="text-gray-900 dark:text-white">
