@@ -1,257 +1,227 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
 import CalendarFeedBox from "../components/calendar/CalendarFeedBox";
 
 const canonicalURL = new URL('calendar.ics', Astro.site);
 let calendarLink = canonicalURL.toString();
+
+// Calendar platform configurations
+const platforms = [
+  {
+    name: "Zoho Calendar",
+    iconBg: "bg-red-100 dark:bg-red-900/30",
+    iconColor: "text-red-600",
+    noteBg: "bg-red-50 dark:bg-red-900/20",
+    noteBorder: "border-red-200 dark:border-red-800",
+    noteText: "text-red-900 dark:text-red-200",
+    icon: `<path d="M7 2a1 1 0 011 1v1h8V3a1 1 0 112 0v1h1a3 3 0 013 3v12a3 3 0 01-3 3H5a3 3 0 01-3-3V7a3 3 0 013-3h1V3a1 1 0 011-1zm12 8H5v9a1 1 0 001 1h12a1 1 0 001-1v-9z"/>`,
+    steps: [
+      { text: 'Open <a href="https://calendar.zoho.com" target="_blank" class="text-codermana-orange hover:underline">Zoho Calendar</a>' },
+      { text: 'Go to <strong>Settings</strong> → <strong>Calendar</strong> → <strong>Import/Export</strong>' },
+      { text: 'Select <strong>"Web URL"</strong>' },
+      { text: 'Paste the calendar URL:', showUrl: true },
+      { text: 'Click <strong>"Import"</strong>' }
+    ],
+    note: "Zoho Calendar may take some time to refresh subscribed calendars."
+  },
+  {
+    name: "Google Calendar",
+    iconBg: "bg-blue-100 dark:bg-blue-900/30",
+    iconColor: "text-blue-600",
+    noteBg: "bg-blue-50 dark:bg-blue-900/20",
+    noteBorder: "border-blue-200 dark:border-blue-800",
+    noteText: "text-blue-900 dark:text-blue-200",
+    icon: `<path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>`,
+    steps: [
+      { text: 'Open <a href="https://calendar.google.com" target="_blank" class="text-codermana-orange hover:underline">Google Calendar</a>' },
+      { text: 'Click the <strong>+</strong> next to "Other calendars" on the left sidebar' },
+      { text: 'Select <strong>"From URL"</strong>' },
+      { text: 'Paste the calendar URL:', showUrl: true },
+      { text: 'Click <strong>"Add calendar"</strong>' }
+    ],
+    note: "It may take a few hours for Google to sync new events."
+  },
+  {
+    name: "Apple Calendar",
+    iconBg: "bg-gray-100 dark:bg-gray-800",
+    iconColor: "text-gray-800 dark:text-white",
+    icon: `<path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>`,
+    sections: [
+      {
+        subtitle: "macOS",
+        steps: [
+          { text: 'Open the <strong>Calendar</strong> app' },
+          { text: 'Go to <strong>File → New Calendar Subscription</strong>' },
+          { text: 'Paste the calendar URL' },
+          { text: 'Choose how often to refresh (recommended: <strong>Every day</strong>)' },
+          { text: 'Click <strong>OK</strong>' }
+        ]
+      },
+      {
+        subtitle: "iOS/iPadOS",
+        steps: [
+          { text: 'Open <strong>Settings</strong> app' },
+          { text: 'Go to <strong>Calendar → Accounts → Add Account</strong>' },
+          { text: 'Select <strong>Other → Add Subscribed Calendar</strong>' },
+          { text: 'Paste the calendar URL and tap <strong>Next</strong>' }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Outlook",
+    iconBg: "bg-blue-100 dark:bg-blue-900/30",
+    iconColor: "text-blue-700",
+    icon: `<path d="M24 7.387v9.225c0 1.338-1.091 2.429-2.43 2.429H2.43C1.091 19.041 0 17.95 0 16.612V7.387c0-1.338 1.091-2.43 2.43-2.43h19.14c1.339 0 2.43 1.092 2.43 2.43z"/>`,
+    sections: [
+      {
+        subtitle: "Web",
+        steps: [
+          { text: 'Go to <a href="https://outlook.live.com/calendar" target="_blank" class="text-codermana-orange hover:underline">Outlook Calendar</a>' },
+          { text: 'Click <strong>"Add calendar"</strong> in the left sidebar' },
+          { text: 'Select <strong>"Subscribe from web"</strong>' },
+          { text: 'Paste the calendar URL' },
+          { text: 'Name it "The CoderMana Hour" and click <strong>Import</strong>' }
+        ]
+      },
+      {
+        subtitle: "Desktop",
+        steps: [
+          { text: 'Go to <strong>File → Account Settings → Internet Calendars</strong>' },
+          { text: 'Click <strong>New</strong> and paste the calendar URL' },
+          { text: 'Click <strong>Add</strong>' }
+        ]
+      }
+    ]
+  }
+];
+
+const benefits = [
+  {
+    emoji: "🔄",
+    title: "Auto-Updates",
+    description: "New sessions appear automatically in your calendar"
+  },
+  {
+    emoji: "🔔",
+    title: "Reminders",
+    description: "Get notifications before each session starts"
+  },
+  {
+    emoji: "📱",
+    title: "Syncs Everywhere",
+    description: "Available on all your devices automatically"
+  },
+  {
+    emoji: "🎯",
+    title: "Never Miss Out",
+    description: "All sessions in one place, no manual adding"
+  }
+];
+
+const faqs = [
+  {
+    question: "How often does the calendar update?",
+    answer: "Most calendar apps check for updates every few hours to once a day. New sessions will appear automatically."
+  },
+  {
+    question: "Can I unsubscribe later?",
+    answer: "Yes! Just delete the calendar from your calendar app. No registration or account needed."
+  },
+  {
+    question: "Will past sessions show up?",
+    answer: "No, the calendar feed only includes upcoming sessions to keep your calendar clean."
+  },
+  {
+    question: "Is my privacy protected?",
+    answer: "Absolutely. This is a one-way feed - we don't see your calendar or track subscriptions."
+  }
+];
 ---
 
 <Layout>
   <div class="max-w-4xl mx-auto px-4 py-12">
-      <!-- Hero Section -->
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center justify-center w-20 h-20 bg-linear-to-br from-codermana-orange to-codermana-dark-orange rounded-2xl mb-6">
-          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-        </div>
-        <h1 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-          Subscribe to Our Calendar
-        </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Never miss a session! Subscribe to our calendar feed and get all upcoming CoderMana Hour sessions automatically added to your calendar.
-        </p>
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-codermana-orange to-codermana-dark-orange rounded-2xl mb-6">
+        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
       </div>
+      <h1 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
+        Subscribe to Our Calendar
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Never miss a session! Subscribe to our calendar feed and get all upcoming CoderMana Hour sessions automatically added to your calendar.
+      </p>
+    </div>
 
-      <!-- Calendar URL Box -->
-      <CalendarFeedBox url={calendarLink} client:load/>
+    <!-- Calendar URL Box -->
+    <CalendarFeedBox url={calendarLink} client:load/>
 
-      <!-- Instructions by Platform -->
-      <div class="space-y-6 mb-12">
-        <!-- Zoho Calendar -->
+    <!-- Instructions by Platform -->
+    <div class="space-y-6 mb-12">
+      {platforms.map((platform) => (
         <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800">
           <div class="flex items-start gap-4">
             <div class="shrink-0">
-              <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
-                <!-- Zoho-style calendar icon -->
-                <svg class="w-7 h-7 text-red-600" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M7 2a1 1 0 011 1v1h8V3a1 1 0 112 0v1h1a3 3 0 013 3v12a3 3 0 01-3 3H5a3 3 0 01-3-3V7a3 3 0 013-3h1V3a1 1 0 011-1zm12 8H5v9a1 1 0 001 1h12a1 1 0 001-1v-9z"/>
-                </svg>
+              <div class={`w-12 h-12 ${platform.iconBg} rounded-lg flex items-center justify-center`}>
+                <svg class={`w-7 h-7 ${platform.iconColor}`} viewBox="0 0 24 24" fill="currentColor" set:html={platform.icon} />
               </div>
             </div>
 
             <div class="flex-1">
               <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-                Zoho Calendar
+                {platform.name}
               </h3>
 
-              <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-                <li class="flex gap-3">
-                  <span class="font-semibold text-codermana-orange">1.</span>
-                  <span>
-                    Open
-                    <a
-                    href="https://calendar.zoho.com"
-                    target="_blank"
-                    class="text-codermana-orange hover:underline"
-                    >
-                    Zoho Calendar
-                  </a>
-                </span>
-              </li>
+              {platform.sections ? (
+                platform.sections.map((section) => (
+                  <>
+                    {section.subtitle && (
+                      <h4 class="font-bold mt-6 mb-2 text-gray-900 dark:text-white first:mt-0">
+                        {platform.name} ({section.subtitle})
+                      </h4>
+                    )}
+                    <ol class="space-y-2 text-gray-600 dark:text-gray-400">
+                      {section.steps.map((step, idx) => (
+                        <li class="flex gap-3">
+                          <span class="font-semibold text-codermana-orange">{idx + 1}.</span>
+                          <span set:html={step.text} />
+                        </li>
+                      ))}
+                    </ol>
+                  </>
+                ))
+              ) : (
+                <ol class="space-y-2 text-gray-600 dark:text-gray-400">
+                  {platform.steps?.map((step, idx) => (
+                    <li class="flex gap-3">
+                      <span class="font-semibold text-codermana-orange">{idx + 1}.</span>
+                      <span>
+                        <span set:html={step.text} />
+                        {step.showUrl && (
+                          <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm block mt-2 break-all">
+                            {calendarLink}
+                          </code>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              )}
 
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>
-                  Go to <strong>Settings</strong> → <strong>Calendar</strong> → <strong>Import/Export</strong>
-                </span>
-              </li>
-
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Select <strong>"Web URL"</strong></span>
-              </li>
-
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">4.</span>
-                <span>
-                  Paste the calendar URL:
-                  <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">
-                    {calendarLink}
-                  </code>
-                </span>
-              </li>
-
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">5.</span>
-                <span>Click <strong>"Import"</strong></span>
-              </li>
-            </ol>
-
-            <div class="mt-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-              <p class="text-sm text-red-900 dark:text-red-200">
-                <strong>Note:</strong> Zoho Calendar may take some time to refresh subscribed calendars.
-              </p>
+              {platform.note && (
+                <div class={`mt-4 ${platform.noteBg} border ${platform.noteBorder} rounded-lg p-4`}>
+                  <p class={`text-sm ${platform.noteText} break-words`}>
+                    <strong>Note:</strong> {platform.note}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Google Calendar -->
-      <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800">
-        <div class="flex items-start gap-4">
-          <div class="shrink-0">
-            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-              <svg class="w-7 h-7 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Google Calendar</h3>
-            <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">1.</span>
-                <span>Open <a href="https://calendar.google.com" target="_blank" class="text-codermana-orange hover:underline">Google Calendar</a></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>Click the <strong>+</strong> next to "Other calendars" on the left sidebar</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Select <strong>"From URL"</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">4.</span>
-                <span>Paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">{calendarLink}</code></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">5.</span>
-                <span>Click <strong>"Add calendar"</strong></span>
-              </li>
-            </ol>
-            <div class="mt-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-              <p class="text-sm text-blue-900 dark:text-blue-200">
-                <strong>Note:</strong> It may take a few hours for Google to sync new events.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Apple Calendar (macOS/iOS) -->
-      <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800">
-        <div class="flex items-start gap-4">
-          <div class="shrink-0">
-            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-              <svg class="w-7 h-7 text-gray-800 dark:text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Apple Calendar (macOS)</h3>
-            <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">1.</span>
-                <span>Open the <strong>Calendar</strong> app</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>Go to <strong>File → New Calendar Subscription</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Paste the calendar URL</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">4.</span>
-                <span>Choose how often to refresh (recommended: <strong>Every day</strong>)</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">5.</span>
-                <span>Click <strong>OK</strong></span>
-              </li>
-            </ol>
-
-            <h4 class="font-bold mt-6 mb-2 text-gray-900 dark:text-white">Apple Calendar (iOS/iPadOS)</h4>
-            <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">1.</span>
-                <span>Open <strong>Settings</strong> app</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>Go to <strong>Calendar → Accounts → Add Account</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Select <strong>Other → Add Subscribed Calendar</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">4.</span>
-                <span>Paste the calendar URL and tap <strong>Next</strong></span>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <!-- Outlook -->
-      <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800">
-        <div class="flex items-start gap-4">
-          <div class="shrink-0">
-            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-              <svg class="w-7 h-7 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 7.387v9.225c0 1.338-1.091 2.429-2.43 2.429H2.43C1.091 19.041 0 17.95 0 16.612V7.387c0-1.338 1.091-2.43 2.43-2.43h19.14c1.339 0 2.43 1.092 2.43 2.43z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Outlook (Web)</h3>
-            <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">1.</span>
-                <span>Go to <a href="https://outlook.live.com/calendar" target="_blank" class="text-codermana-orange hover:underline">Outlook Calendar</a></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>Click <strong>"Add calendar"</strong> in the left sidebar</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Select <strong>"Subscribe from web"</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">4.</span>
-                <span>Paste the calendar URL</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">5.</span>
-                <span>Name it "The CoderMana Hour" and click <strong>Import</strong></span>
-              </li>
-            </ol>
-
-            <h4 class="font-bold mt-6 mb-2 text-gray-900 dark:text-white">Outlook Desktop</h4>
-            <ol class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">1.</span>
-                <span>Go to <strong>File → Account Settings → Internet Calendars</strong></span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">2.</span>
-                <span>Click <strong>New</strong> and paste the calendar URL</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="font-semibold text-codermana-orange">3.</span>
-                <span>Click <strong>Add</strong></span>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
+      ))}
 
       <!-- Other Apps -->
       <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800">
@@ -269,63 +239,34 @@ let calendarLink = canonicalURL.toString();
               Most calendar applications support subscribing to .ics feeds. Look for options like:
             </p>
             <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex gap-2">
-                <span class="text-codermana-orange">•</span>
-                <span>"Add calendar from URL"</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="text-codermana-orange">•</span>
-                <span>"Subscribe to calendar"</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="text-codermana-orange">•</span>
-                <span>"Add internet calendar"</span>
-              </li>
-              <li class="flex gap-2">
-                <span class="text-codermana-orange">•</span>
-                <span>"Import calendar feed"</span>
-              </li>
+              {["Add calendar from URL", "Subscribe to calendar", "Add internet calendar", "Import calendar feed"].map((option) => (
+                <li class="flex gap-2">
+                  <span class="text-codermana-orange">•</span>
+                  <span>"{option}"</span>
+                </li>
+              ))}
             </ul>
             <p class="text-gray-600 dark:text-gray-400 mt-4">
-              Then paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm">{calendarLink}</code>
+              Then paste the calendar URL: <code class="bg-gray-200 dark:bg-zinc-800 px-2 py-1 rounded text-sm block mt-2 break-all">{calendarLink}</code>
             </p>
           </div>
         </div>
       </div>
-      </div>
+    </div>
 
     <!-- Benefits -->
-    <div class="bg-linear-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 mb-12 border border-green-200 dark:border-green-800">
+    <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 mb-12 border border-green-200 dark:border-green-800">
       <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">✨ Benefits of Subscribing</h2>
       <div class="grid md:grid-cols-2 gap-4">
-        <div class="flex gap-3">
-          <div class="shrink-0 text-2xl">🔄</div>
-          <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Auto-Updates</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">New sessions appear automatically in your calendar</p>
+        {benefits.map((benefit) => (
+          <div class="flex gap-3">
+            <div class="shrink-0 text-2xl">{benefit.emoji}</div>
+            <div>
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-1">{benefit.title}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{benefit.description}</p>
+            </div>
           </div>
-        </div>
-        <div class="flex gap-3">
-          <div class="shrink-0 text-2xl">🔔</div>
-          <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Reminders</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Get notifications before each session starts</p>
-          </div>
-        </div>
-        <div class="flex gap-3">
-          <div class="shrink-0 text-2xl">📱</div>
-          <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Syncs Everywhere</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">Available on all your devices automatically</p>
-          </div>
-        </div>
-        <div class="flex gap-3">
-          <div class="shrink-0 text-2xl">🎯</div>
-          <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Never Miss Out</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">All sessions in one place, no manual adding</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
 
@@ -333,22 +274,12 @@ let calendarLink = canonicalURL.toString();
     <div class="bg-gray-50 dark:bg-zinc-900 rounded-xl p-8 mb-12 border border-gray-200 dark:border-zinc-800">
       <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Frequently Asked Questions</h2>
       <div class="space-y-6">
-        <div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">How often does the calendar update?</h3>
-          <p class="text-gray-600 dark:text-gray-400">Most calendar apps check for updates every few hours to once a day. New sessions will appear automatically.</p>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Can I unsubscribe later?</h3>
-          <p class="text-gray-600 dark:text-gray-400">Yes! Just delete the calendar from your calendar app. No registration or account needed.</p>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Will past sessions show up?</h3>
-          <p class="text-gray-600 dark:text-gray-400">No, the calendar feed only includes upcoming sessions to keep your calendar clean.</p>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Is my privacy protected?</h3>
-          <p class="text-gray-600 dark:text-gray-400">Absolutely. This is a one-way feed - we don't see your calendar or track subscriptions.</p>
-        </div>
+        {faqs.map((faq) => (
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-2">{faq.question}</h3>
+            <p class="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+          </div>
+        ))}
       </div>
     </div>
 
