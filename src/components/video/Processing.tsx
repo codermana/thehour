@@ -2,20 +2,14 @@ export default function Processing() {
   return (
     <div
       id="video-processing"
-      className="
-        my-10 rounded-xl overflow-hidden shadow-2xl border-2 transition-colors
+      className="my-10 rounded-xl overflow-hidden shadow-2xl border-2 transition-colors
         bg-gray-50 border-gray-200
         hover:border-codermana-orange
-        dark:bg-gray-900 dark:border-transparent dark:hover:border-codermana-orange
-      "
-    >
+        dark:bg-gray-900 dark:border-transparent dark:hover:border-codermana-orange">
       <div
-        className="
-          aspect-video relative
+        className="aspect-video relative
           bg-linear-to-br from-gray-100 via-gray-50 to-gray-100
-          dark:from-gray-900 dark:via-zinc-900 dark:to-gray-800
-        "
-      >
+          dark:from-gray-900 dark:via-zinc-900 dark:to-gray-800 min-h-60">
         {/* Decorative background */}
         <div className="absolute inset-0 overflow-hidden">
           <div
@@ -41,7 +35,7 @@ export default function Processing() {
             <div className="absolute inset-0 bg-codermana-orange/30 rounded-full blur-2xl animate-pulse" />
             <div className="relative bg-linear-to-br from-codermana-orange to-codermana-dark-orange p-6 rounded-2xl">
               <svg
-                className="w-8 h-8 md:w-16 md:h-16 text-white animate-spin"
+                className="w-4 md:w-8 lg:w-16 h-4 md:h-8 lg:h-16 text-white animate-spin"
                 style={{ animationDuration: '2s' }}
                 fill="none"
                 stroke="currentColor"
