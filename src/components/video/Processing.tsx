@@ -1,6 +1,6 @@
 export default function Processing() {
   return (
-    <div id="video-processing" className="bg-gray-900 rounded-xl overflow-hidden shadow-2xl border-2 border-codermana-orange my-10">
+    <div id="video-processing" className="bg-gray-900 rounded-xl overflow-hidden shadow-2xl border-2 border-transparent hover:border-codermana-orange my-10">
         <div className="aspect-video relative bg-linear-to-br from-gray-900 via-zinc-900 to-gray-800">
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute inset-0 opacity-5" style={{backgroundImage: 'linear-linear(rgba(255,140,66,.3) 1px, transparent 1px), linear-linear(90deg, rgba(255,140,66,.3) 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
@@ -23,7 +23,7 @@ export default function Processing() {
                     Video Processing
                 </h3>
                 <p className="text-gray-300 text-center mb-6 max-w-md">
-                    We're editing and processing the recording. This usually takes 2-3 days after the session ends.
+                    We're editing, processing and uploading the recording. This usually takes 2-3 days after the session ends.
                 </p>
 
                 <div className="w-full max-w-md mb-6">
