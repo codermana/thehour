@@ -7,7 +7,7 @@ export default function NewsletterCTA() {
                 Subscribe to our newsletter for session announcements, resources, and exclusive content.
             </p>
 
-            <div className="max-w-md mx-auto">
+            <div className="mx-auto">
                 <form className="flex flex-col sm:flex-row gap-3"
                     action="https://mailinglist.codermana.com/subscription/form"
                     method="POST"
