@@ -3,6 +3,8 @@ import { SESSION_STATUS, type Session } from "../../../data/Session";
 import { VIDEO_PLATFORM } from "../../../data/video";
 import { computeSessionStatus } from "../../../data/computeSessionStatus";
 
+import Processing from "../../video/Processing";
+
 export default function SessionVideo({ session }: { session: Session }) {
   let [status, setStatus] = useState(computeSessionStatus(session.startDateTime));
 
@@ -15,7 +17,7 @@ export default function SessionVideo({ session }: { session: Session }) {
       return null;
     }
 
-    return <p className="text-2xl text-center text-codermana-orange my-8">video will be uploaded soon</p>;
+    return <Processing/>;
   }
 
   const youtube = session.data.resources?.videos?.find(
