@@ -4,6 +4,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-codermana-orange: #FF8C42;
-  --color-codermana-dark-orange: #FF6B1A;
+  --color-codermana-orange: #FFA500;
+  --color-codermana-dark-orange: #F97316;
 }
