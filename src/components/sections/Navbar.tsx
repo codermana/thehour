@@ -42,7 +42,7 @@ export default function Navbar() {
                     </svg>
                 </button>
 
-                <a href="/#subscribe" className="bg-codermana-orange hover:bg-codermana-dark-orange text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm">
+                <a href="/#subscribe" className="bg-codermana-orange hover:bg-codermana-dark-orange text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm hidden sm:inline-block">
                     Subscribe
                 </a>
             </nav>
