@@ -1,7 +1,7 @@
 ---
 title: "Exploring Tauri - Weylus x DrawPen to build Mirrorpad"
 description: In this session, we build on earlier Weylus exploration to design a macOS desktop application using Tauri. The goal is to create "Mirrorpad" — a lightweight app that lets you mirror a tablet, draw, and annotate seamlessly on macOS using open-source tooling.
-startTime: "2026-02-05T19:00:00+05:30"
+startTime: "2026-02-26T19:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["tauri", "desktop", "macOS", "rust", "typescript"]
 ---
