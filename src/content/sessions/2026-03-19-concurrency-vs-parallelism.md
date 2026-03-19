@@ -1,7 +1,7 @@
 ---
 title: "Concurrency vs Parallelism in Go: From Sequential to Concurrent"
 description: "An interactive Go session where we start from a sequential program, make it concurrent with goroutines and channels, and build an intuition for concurrency, parallelism, and the Go scheduler."
-startTime: "2026-03-19T19:00:00+05:30"
+startTime: "2026-03-19T20:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["golang", "concurrency", "parallelism", "goroutines", "scheduler"]
 resources:
