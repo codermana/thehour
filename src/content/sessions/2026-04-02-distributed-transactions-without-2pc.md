@@ -1,6 +1,6 @@
 ---
 title: "Distributed Transactions Without 2PC: Saga, Transactional Outbox, and CQRS"
-description: "A practical session on why two-phase commit is often a poor fit for modern distributed systems, and how patterns like Saga, Transactional Outbox, and CQRS help services coordinate safely."
+description: "A practical session on why two-phase commit is often a poor fit for modern distributed systems, and how patterns like Saga, Transactional Outbox, and CQRS help services coordinate safely. Familiarity with microservices and basic database transactions is assumed."
 startTime: "2026-04-02T19:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["distributed-systems", "microservices", "saga", "cqrs", "transactional-outbox"]
@@ -10,7 +10,7 @@ resources:
 
 Coordinating changes across services is one of the hardest parts of distributed systems. Traditional distributed transactions and two-phase commit promise consistency, but they also introduce coupling, blocking, and operational complexity that many modern systems try to avoid.
 
-In this session, we will look at practical alternatives that show up far more often in real architectures: Saga, Transactional Outbox, and CQRS. The goal is not just to define the patterns, but to understand when you would choose them, what tradeoffs they introduce, and how they work together.
+In this session, we will look at practical alternatives that show up far more often in real architectures: Saga, Transactional Outbox, and CQRS. The goal is not just to define the patterns, but to understand when you would choose them, what tradeoffs they introduce, and how they work together. CQRS enters as part of the consistency story, not as a detour, so the connection between asynchronous workflows and eventual consistency stays clear throughout.
 
 We will use examples from the distributed design patterns training repo, including:
 
@@ -37,27 +37,24 @@ We will use examples from the distributed design patterns training repo, includi
 
 * Breaking a larger workflow into smaller local transactions
 * Using compensating actions instead of global rollback
-* Understanding where Saga works well and where it becomes tricky
+* Understanding where Saga works well and where it becomes tricky: failed compensations, retry storms, and long-running workflows that fail midway
 
 ### 4. Transactional Outbox
 
 * Why updating the database and publishing an event atomically is hard
 * How the outbox pattern closes that gap
-* What delivery guarantees and operational concerns still remain
+* What delivery guarantees and operational concerns still remain: at-least-once delivery, duplicate events, relay failures, and idempotent consumers
 
-### 5. CQRS in the Bigger Picture
+### 5. Putting the Patterns Together
 
-* Separating write models from read models
-* Why CQRS pairs naturally with event-driven and asynchronous systems
-* How it changes consistency expectations for consumers
-
-### 6. Putting the Patterns Together
-
-* A realistic microservice workflow using Saga, Outbox, and CQRS together
-* How to reason about retries, idempotency, and eventual consistency
+* A brief CQRS setup: separating write models from read models in asynchronous systems
+* A concrete order placement flow spanning inventory, payment, and notification services
+* How Saga, Outbox, and CQRS fit together in one end-to-end workflow
+* How read/write separation helps justify eventual consistency for consumers
+* How to reason about retries, idempotency, duplicate messages, and partial failure across the workflow
 * Common tradeoffs between simplicity, correctness, and latency
 
-### 7. Discussion and Q&A
+### 6. Discussion and Q&A
 
 * When should you still consider 2PC?
 * When are these patterns overkill?
@@ -66,5 +63,5 @@ We will use examples from the distributed design patterns training repo, includi
 ## What You'll Take Away
 
 * A practical understanding of why 2PC is often avoided in distributed applications
-* A clearer mental model for Saga, Transactional Outbox, and CQRS
-* Better intuition for designing workflows that remain correct under failure
+* A decision framework for choosing between Saga, Transactional Outbox, and CQRS based on consistency needs and failure tolerance
+* Better intuition for designing workflows that remain correct under retries, duplicate delivery, and partial failure
