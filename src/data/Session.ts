@@ -14,6 +14,14 @@ export const SESSION_STATUS_COLOR: Record<SESSION_STATUS, string> = {
   [SESSION_STATUS.LIVE]: 'bg-red-600 animate-pulse',
 };
 
+export function isPublicSession(session: AstroSession) {
+  return !session.data.draft;
+}
+
+export function getPublicSessions(sessions: AstroSession[]) {
+  return sessions.filter(isPublicSession);
+}
+
 export function wrapSession(session: AstroSession) {
   const date = new Date(session.data.startTime);
 

@@ -8,10 +8,10 @@ import Breadcrumb from '../../components/sessions/Breadcrumb';
 import Comments from '../../components/sections/Comments';
 import SessionDetails from '../../components/sessions/SessionDetails';
 
-import { wrapSession } from '../../data/Session';
+import { getPublicSessions, wrapSession } from '../../data/Session';
 
 export async function getStaticPaths() {
-	const sessions = await getCollection('sessions');
+	const sessions = getPublicSessions(await getCollection('sessions'));
 	return sessions.map((session) => ({
 		params: { slug: session.id },
 		props: session,

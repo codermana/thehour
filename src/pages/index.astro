@@ -7,11 +7,11 @@ import Hero from '../components/sections/Hero';
 import NewsletterCTA from '../components/cta/NewsletterCTA';
 import About from '../components/sections/About.astro';
 
-import { wrapSession } from '../data/Session';
+import { getPublicSessions, wrapSession } from '../data/Session';
 import FAQ from '../components/sections/FAQ.astro';
 import HomeSessions from '../components/sessions/HomeSessions';
 
-const sessions = (await getCollection('sessions')).map(wrapSession).sort(
+const sessions = getPublicSessions(await getCollection('sessions')).map(wrapSession).sort(
 	(a, b) => b.timestamp - a.timestamp
 );
 

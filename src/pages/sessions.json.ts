@@ -1,9 +1,10 @@
 import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import type { APIContext } from 'astro';
+import { getPublicSessions } from '../data/Session';
 
 export async function GET(context: APIContext) {
-  const sessions = await getCollection('sessions');
+  const sessions = getPublicSessions(await getCollection('sessions'));
 
   let sessionsToSerialize = sessions.map((session) => ({
     ...session.data,

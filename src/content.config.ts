@@ -26,6 +26,7 @@ const sessions = defineCollection({
       description: z.string(),
       startTime: z.string().datetime({ offset: true }).refine(v => v.endsWith('+05:30'), 'Must be IST (+05:30)'),
       joinLink: z.string().optional(),
+      draft: z.boolean().default(false),
       duration: z.string().optional(), // "51:20"
       topics: z.array(z.string()).min(1),
 			heroImage: image().optional(),

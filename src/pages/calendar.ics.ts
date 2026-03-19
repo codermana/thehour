@@ -1,7 +1,7 @@
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
-import { wrapSession } from "../data/Session";
+import { getPublicSessions, wrapSession } from "../data/Session";
 import { isRecorded } from "../data/status";
 
 /**
@@ -21,7 +21,7 @@ function sessionUID(sessionId: string) {
 }
 
 export async function GET(context: APIContext) {
-  const sessions = (await getCollection("sessions")).map(wrapSession);
+  const sessions = getPublicSessions(await getCollection("sessions")).map(wrapSession);
 
   const events = sessions.filter((session) => !isRecorded(session)).map((entry) => {
     const {
