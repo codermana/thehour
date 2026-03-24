@@ -1,7 +1,7 @@
 ---
 title: "Distributed Transactions Without 2PC: Saga, Transactional Outbox, and CQRS"
 description: "A practical session on why two-phase commit is often a poor fit for modern distributed systems, and how patterns like Saga, Transactional Outbox, and CQRS help services coordinate safely. Familiarity with microservices and basic database transactions is assumed."
-startTime: "2026-04-02T19:00:00+05:30"
+startTime: "2026-04-16T19:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["distributed-systems", "microservices", "saga", "cqrs", "transactional-outbox"]
 resources:
