@@ -1,7 +1,7 @@
 ---
 title: "Demystifying WebRTC: Peer-to-Peer Communication and Beyond"
 description: "A deep dive into the protocols that power real-time communication on the web. We will explore the RFCs, the lifecycle of a connection, and the underlying machinery of ICE, STUN, and TURN."
-startTime: "2026-04-02T19:00:00+05:30"
+startTime: "2026-04-09T19:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["webrtc", "networking", "p2p", "rfc", "real-time"]
 ---
