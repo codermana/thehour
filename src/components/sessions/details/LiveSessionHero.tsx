@@ -79,7 +79,7 @@ export default function LiveSessionHero({ session }: { session: Session }) {
           </div>
         </div>
 
-        <a href={"/sessions/"+session.id}  className="block p-6 bg-white dark:bg-zinc-900">
+        <a href={session.slugPath}  className="block p-6 bg-white dark:bg-zinc-900">
           <div className="flex items-center gap-3 mb-3">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase text-white bg-red-600 animate-pulse">
               LIVE NOW

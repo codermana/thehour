@@ -1,4 +1,5 @@
 ---
+slug: "shadow-brokers"
 title: "From Secrets to Cyber Chaos: Inside the NSA/Shadow Brokers Leak and Its Tools"
 description: "In April 2017, a mysterious hacker group known as The Shadow Brokers publicly released a treasure trove of sophisticated hacking tools and exploits allegedly tied to the U.S. National Security Agency (NSA)’s elite cyber-offensive unit, the Equation Group."
 startTime: "2027-12-30T19:00:00+05:30"

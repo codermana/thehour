@@ -11,7 +11,7 @@ export default function SessionCard({session}: {session: Session}) {
     }, [])
 
     return (
-        <a href={'/sessions/'+session.id} className="block bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800 hover:border-codermana-orange dark:hover:border-codermana-orange transition-all hover:shadow-lg group">
+        <a href={session.slugPath} className="block bg-gray-50 dark:bg-zinc-900 rounded-xl p-6 border border-gray-200 dark:border-zinc-800 hover:border-codermana-orange dark:hover:border-codermana-orange transition-all hover:shadow-lg group">
             <div className="flex items-start justify-between mb-4">
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase text-white ${SESSION_STATUS_COLOR[status]}`}>
                     {status}

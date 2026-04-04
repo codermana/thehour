@@ -13,7 +13,7 @@ import { getPublicSessions, wrapSession } from '../../data/Session';
 export async function getStaticPaths() {
 	const sessions = getPublicSessions(await getCollection('sessions'));
 	return sessions.map((session) => ({
-		params: { slug: session.id },
+		params: { slug: session.data.slug },
 		props: session,
 	}));
 }

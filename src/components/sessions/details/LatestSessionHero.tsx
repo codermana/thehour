@@ -17,7 +17,7 @@ export default function LatestSessionHero({ session }: { session: Session }) {
     <section id="sessions" className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Latest Session</h2>
 
-      <a href={"/sessions/"+session.id} className="block bg-gray-50 dark:bg-zinc-900 rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-800 hover:border-codermana-orange dark:hover:border-codermana-orange transition-all hover:shadow-lg group">
+      <a href={session.slugPath} className="block bg-gray-50 dark:bg-zinc-900 rounded-xl overflow-hidden border border-gray-200 dark:border-zinc-800 hover:border-codermana-orange dark:hover:border-codermana-orange transition-all hover:shadow-lg group">
           <div className="relative bg-black">
               <div className="aspect-video">
                 {thumbnail &&

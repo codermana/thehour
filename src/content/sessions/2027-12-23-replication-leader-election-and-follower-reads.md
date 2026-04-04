@@ -1,4 +1,5 @@
 ---
+slug: "replication-leader-election-and-follower-reads"
 title: "Replication, Leader Election, and Follower Reads"
 description: "A practical session on core replication patterns in distributed systems, including leader-based replication, master election, and when follower reads help or hurt."
 startTime: "2027-12-23T19:00:00+05:30"

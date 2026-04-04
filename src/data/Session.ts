@@ -24,13 +24,14 @@ export function getPublicSessions(sessions: AstroSession[]) {
 
 export function wrapSession(session: AstroSession) {
   const date = new Date(session.data.startTime);
+  const slugPath = `/sessions/${session.data.slug}`;
 
   return {
     ...session,
 
     // derived fields
     year: date.getFullYear().toString(),
-    slugPath: `/sessions/${session.id}`,
+    slugPath,
     timestamp: +date,
     startDateTime: date,
   };

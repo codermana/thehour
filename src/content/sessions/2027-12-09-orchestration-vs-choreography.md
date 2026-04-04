@@ -1,4 +1,5 @@
 ---
+slug: "orchestration-vs-choreography-in-microservices"
 title: "Orchestration vs Choreography in Microservices"
 description: "A practical look at two common coordination styles in distributed systems, with tradeoffs around coupling, visibility, resilience, and operational complexity."
 startTime: "2027-12-09T19:00:00+05:30"

@@ -22,6 +22,7 @@ const sessions = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
+      slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use a lowercase kebab-case slug'),
       title: z.string(),
       description: z.string(),
       startTime: z.string().datetime({ offset: true }).refine(v => v.endsWith('+05:30'), 'Must be IST (+05:30)'),

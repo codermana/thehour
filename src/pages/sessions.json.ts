@@ -1,14 +1,14 @@
 import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import type { APIContext } from 'astro';
-import { getPublicSessions } from '../data/Session';
+import { getPublicSessions, wrapSession } from '../data/Session';
 
 export async function GET(context: APIContext) {
-  const sessions = getPublicSessions(await getCollection('sessions'));
+  const sessions = getPublicSessions(await getCollection('sessions')).map(wrapSession);
 
   let sessionsToSerialize = sessions.map((session) => ({
     ...session.data,
-    link: `/sessions/${session.id}/`,
+    link: `${session.slugPath}/`,
   })).map(({ joinLink, ...rest }) => rest);
 
   const data = {

@@ -1,4 +1,5 @@
 ---
+slug: "resilience-patterns-for-microservices"
 title: "Resilience Patterns for Microservices: Circuit Breakers, Service Discovery, and Scatter-Gather"
 description: "A session on practical resilience patterns for distributed systems, focusing on partial failure, service discovery, fan-out requests, and protecting systems under stress."
 startTime: "2027-12-16T19:00:00+05:30"
