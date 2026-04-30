@@ -7,6 +7,11 @@ joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["golang", "concurrency", "parallelism", "goroutines", "scheduler"]
 resources:
   code: https://github.com/codermana/Go-Training/tree/master/examples/11-B-concurrency
+  videos:
+    - fullLink: https://www.youtube.com/watch?v=gUBYStmSofA
+      embedLink: https://www.youtube.com/embed/gUBYStmSofA?rel=0&modestbranding=1
+      thumbnail: https://img.youtube.com/vi/gUBYStmSofA/maxresdefault.jpg
+      platform: youtube
 ---
 
 Concurrency and parallelism are related, but they are not the same thing. In this interactive session, we will use Go to make that distinction concrete by starting with a sequential program and evolving it into a concurrent one step by step.
