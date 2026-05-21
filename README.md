@@ -1,62 +1,105 @@
-# Astro Starter Kit: Blog
+# The Hour
 
-```sh
-pnpm create astro@latest -- --template blog
-```
+The Hour is the Astro site for CoderMana Hour, a collection of live technical sessions. The site publishes session pages, upcoming-session listings, an RSS feed, a JSON feed, and an iCalendar feed.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Production site: <https://thehour.codermana.com>
 
-Features:
+## Tech Stack
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- Astro 5
+- React 19 islands for interactive session UI
+- Tailwind CSS 4 through the Vite plugin
+- Astro content collections for session Markdown and MDX
+- pnpm for dependency management
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+src/
+  components/        Reusable Astro and React UI
+  content/sessions/  Session Markdown and MDX entries
+  data/              Session wrappers, status helpers, and resource helpers
+  layouts/           Page layout shell
+  pages/             Astro routes and feed endpoints
+  styles/            Global CSS
+src/content.config.ts  Content collection schema
+astro.config.mjs       Astro integrations and site URL
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Important routes:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `/` - home page with session highlights
+- `/sessions` - browsable session archive
+- `/sessions/[slug]` - individual session pages
+- `/rss.xml` - RSS feed
+- `/sessions.json` - JSON feed without private join links
+- `/calendar.ics` - iCalendar feed for upcoming sessions
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## Getting Started
 
-Any static assets, like images, can be placed in the `public/` directory.
+Install dependencies:
 
-## 🧞 Commands
+```sh
+pnpm install
+```
 
-All commands are run from the root of the project, from a terminal:
+Start the local dev server:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+```sh
+pnpm dev
+```
 
-## 👀 Want to learn more?
+Build the production site:
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```sh
+pnpm build
+```
 
-## Credit
+Preview the production build:
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+```sh
+pnpm preview
+```
+
+## Session Content
+
+Sessions live in `src/content/sessions/`. Add one Markdown or MDX file per session. The filename is used by Astro as the content entry id, while the public URL comes from the `slug` frontmatter field.
+
+Example:
+
+```md
+---
+slug: "distributed-transactions-without-2pc"
+title: "Distributed Transactions Without 2PC: Saga, Transactional Outbox, and CQRS"
+description: "A practical session on distributed transaction alternatives."
+startTime: "2026-06-11T19:00:00+05:30"
+joinLink: "https://meet.jit.si/TheCoderManaHour"
+duration: "60:00"
+topics: ["distributed-systems", "microservices"]
+resources:
+  code: "https://github.com/codermana/distributed-design-patterns-training"
+draft: false
+---
+
+Session body goes here.
+```
+
+Frontmatter rules are enforced in `src/content.config.ts`:
+
+- `slug` must be lowercase kebab-case.
+- `startTime` must be an ISO datetime with the `+05:30` offset, for example `2026-06-11T19:00:00+05:30`.
+- `topics` must contain at least one topic.
+- `resources` can include `slides`, `code`, `blog`, `background`, and `videos`.
+- Set `draft: true` to keep a session out of public pages and feeds.
+
+Run `pnpm build` before pushing content changes. Astro validates all session frontmatter during the build, which is also what Netlify runs.
+
+## Deployment
+
+Netlify builds the site with:
+
+```sh
+pnpm run build
+```
+
+The generated site is published from `dist/`. There is no `netlify.toml` in this repo, so build settings currently come from the Netlify UI.
