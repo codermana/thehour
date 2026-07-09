@@ -28,12 +28,12 @@ export default function NewsletterCTA() {
                         required
                         />
 
-                    {/* TheHour listid - Required by LISTMONK */}
+                    {/* Listmonk the-hour list UUID - required by Listmonk */}
                     <input
                         className="hidden"
                         type="hidden"
                         name="l"
-                        value="199749a7-d413-4ca1-bdf2-bb9f750f7e66"
+                        value="d998dc22-be9f-4860-85bb-f18c1bd12bfa"
                         />
 
                     {/* Optional but expected */}
