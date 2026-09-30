@@ -5,6 +5,13 @@ description: "A deep dive into the protocols that power real-time communication 
 startTime: "2026-07-16T19:00:00+05:30"
 joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["webrtc", "networking", "p2p", "rfc", "real-time"]
+resources:
+  code: https://github.com/codermana/presentation-demystifying-webrtc/tree/master/src
+  videos:
+    - fullLink: https://www.youtube.com/watch?v=Qp5JHVMNmXA
+      embedLink: https://www.youtube.com/embed/Qp5JHVMNmXA?rel=0&modestbranding=1
+      thumbnail: https://img.youtube.com/vi/Qp5JHVMNmXA/maxresdefault.jpg
+      platform: youtube
 ---
 
 WebRTC (Web Real-Time Communication) is often seen as a black box of browser APIs. However, underneath those APIs lies a sophisticated collection of standards and protocols designed to solve the hard problem of low-latency, peer-to-peer communication over the open internet.
