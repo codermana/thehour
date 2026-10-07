@@ -7,6 +7,7 @@ joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["distributed-systems", "microservices", "saga", "cqrs", "transactional-outbox"]
 resources:
   code: https://github.com/codermana/distributed-design-patterns-training/tree/master/examples
+  slides: https://distributed-transactions-without-2pc.slides.algogrit.com/
 ---
 
 Coordinating changes across services is one of the hardest parts of distributed systems. Traditional distributed transactions and two-phase commit promise consistency, but they also introduce coupling, blocking, and operational complexity that many modern systems try to avoid.

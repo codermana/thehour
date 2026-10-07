@@ -7,6 +7,7 @@ joinLink: https://meet.jit.si/TheCoderManaHour
 topics: ["webrtc", "networking", "p2p", "rfc", "real-time"]
 resources:
   code: https://github.com/codermana/presentation-demystifying-webrtc/tree/master/src
+  slides: https://demystifying-webrtc.slides.algogrit.com/
   videos:
     - fullLink: https://www.youtube.com/watch?v=Qp5JHVMNmXA
       embedLink: https://www.youtube.com/embed/Qp5JHVMNmXA?rel=0&modestbranding=1
