@@ -8,6 +8,11 @@ topics: ["distributed-systems", "microservices", "saga", "cqrs", "transactional-
 resources:
   code: https://github.com/codermana/distributed-design-patterns-training/tree/master/examples
   slides: https://distributed-transactions-without-2pc.slides.algogrit.com/
+  videos:
+    - fullLink: https://www.youtube.com/watch?v=jqoNepWnw-M
+      embedLink: https://www.youtube.com/embed/jqoNepWnw-M?rel=0&modestbranding=1
+      thumbnail: https://img.youtube.com/vi/jqoNepWnw-M/maxresdefault.jpg
+      platform: youtube
 ---
 
 Coordinating changes across services is one of the hardest parts of distributed systems. Traditional distributed transactions and two-phase commit promise consistency, but they also introduce coupling, blocking, and operational complexity that many modern systems try to avoid.
